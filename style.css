@@ -1,1 +1,662 @@
+/* Box sizing rules */
 
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  background-color: #fffafa;
+}
+
+/* A elements that don't have a class get default styles */
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* *********** Custom style ************** */
+
+:root {
+  --Orange: hsl(26, 100%, 55%);
+  --Pale-orange: hsl(25, 100%, 94%);
+  --Very-dark-blue: hsl(218, 12%, 13%);
+  --Dark-grayish-blue: hsl(219, 9%, 45%);
+  --Grayish-blue: hsl(220, 14%, 75%);
+  --Light-grayish-blue: hsl(223, 64%, 98%);
+  --White: hsl(0, 0%, 100%);
+  --Black: hsl(0, 0%, 0%);
+  /* (with 75% opacity for lightbox background) */
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* **************** NavBar *************** */
+
+/* Container that contain the others so that they have some space on the left and right side of them */
+
+.container {
+  width: min(90%, 1140px);
+  margin: auto;
+  padding: 1.5rem 0.5rem;
+  background-color: linear-gradient(306deg, rgba(75,179,239,0.2), rgba(190,72,137,0));
+  border-radius: 5px;
+}
+
+.container,
+.nav-links,
+.menu,
+.logo-ctn,
+.cart-ctn {
+  display: flex;
+  gap: 1.75rem;
+  align-items: center;
+}
+
+/* Gray overlay to body when side navbar pops-up on the mobile size */
+
+.show-overlay {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  transition: all 500ms;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* Navigation Box styling for the mobile size. */
+
+.nav-links {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70%;
+  height: 100%;
+  padding: 1.75rem;
+  background: var(--White);
+  gap: 0.75rem;
+  z-index: 200;
+  flex-direction: column;
+  align-items: flex-start;
+  transform: translateX(-100%);
+  transition: all 500ms ease-in-out;
+}
+
+/* Adding this class to navigation box, to come in the screen when navigation menu is clicked. */
+
+.show-nav {
+  transform: translateX(0%);
+  background-color: #fffafa;
+
+}
+
+.nav-links li:first-child {
+  margin-bottom: 2rem;
+  background-color: #fffafa;
+
+}
+
+/* Navigation links */
+
+.nav-link {
+  font-weight: 600;
+  font-size: 1.2rem;
+  position: relative;
+  background-color: #fffafa;
+
+}
+
+.nav-link::after {
+  content: "";
+  width: 100%;
+  height: 5px;
+  position: absolute;
+  left: 0;
+  bottom: -0.5rem;
+  background: var(--Orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Shopping Cart icon */
+
+.cart-ctn {
+  margin-left: auto;
+  position: relative;
+  margin-right: 0.5rem;
+}
+
+
+/* User profile circle  */
+
+.user-pf-ctn {
+  width: 1.75rem;
+  border-radius: 50%;
+}
+
+/* .user-pf-ctn:hover {
+  cursor: pointer;
+  border: 2px solid var(--Orange);
+  transition: 500ms;
+} */
+
+@media screen and (min-width: 800px) {
+  .container {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--Grayish-blue);
+  }
+  /* Removing the menu functionality for the desktop size */
+  .menu {
+    display: none;
+  }
+  #nav-close-btn {
+    display: none;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 1.5rem;
+    color: var(--Dark-grayish-blue);
+    position: relative;
+    padding: 0;
+    z-index: 50;
+    width: auto;
+    flex-direction: row;
+    transform: translateX(0%);
+    background-color: #fffafa;
+
+  }
+  .nav-link {
+    font-weight: 300;
+    font-size: 1rem;
+    transition: color 300ms;
+  }
+  .nav-link:hover {
+    color: var(--Very-dark-blue);
+  }
+  .nav-link::after {
+    bottom: calc((-7px - 2.5rem));
+  }
+  .cart-ctn {
+    margin-right: 1.5rem;
+  }
+  .cart-modal {
+    left: 75%;
+    transform: translateX(50%);
+  }
+  .show-card-modal {
+    transform: translateX(-50%);
+  }
+  .user-pf-ctn {
+    width: 3rem;
+  }
+}
+
+/* ***************** Main **************** */
+
+main {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ************ Product slideshow for mobile size *********** */
+
+/* Slideshow container */
+
+.slideshow-container__mobile {
+  position: relative;
+  margin: 0 auto;
+  z-index: 0;
+}
+
+/* Hide the images by default */
+
+.mySlides,
+.mySlides__desktop {
+  display: none;
+}
+
+.mySlides img,
+.mySlides__desktop img {
+  max-width: 100%;
+}
+
+/* Next & previous buttons */
+
+.prev,
+.modal__prev,
+.next,
+.modal__next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.3s ease;
+  border-radius: 50px;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--White);
+}
+
+/* Position the "previous button" to the right */
+
+.prev,
+.modal__prev {
+  left: 1rem;
+}
+
+/* Position the "next button" to the right */
+
+.next,
+.modal__next {
+  right: 1rem;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+
+.prev:hover,
+.modal__prev:hover,
+.next:hover,
+.modal__next:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Fading animation */
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ********** Product showcase section at desktop size */
+
+.main-pdt-ctn img {
+  border-radius: 10px;
+}
+
+.pdt-images-ctn {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.pdt-images-ctn img {
+  opacity: 1;
+  border-radius: 10px;
+  transition: opacity 300ms;
+}
+
+.pdt-images-ctn .pdt-image-ctn {
+  border-radius: 10px;
+}
+
+/* Active product image */
+
+.pdt-images-ctn .active-img-ctn {
+  outline: 3px solid var(--Orange);
+}
+
+.pdt-images-ctn .active-img-ctn img {
+  opacity: 0.4;
+}
+
+.pdt-images-ctn img:hover {
+  opacity: 0.4;
+}
+
+.pdt-showcase-ctn__desktop {
+  display: none;
+}
+
+@media screen and (min-width: 800px) {
+  main {
+    margin: 5rem auto;
+    width: 90%;
+    display: grid;
+    gap: 5rem;
+    align-items: center;
+    grid-template-columns: 0.75fr 1fr;
+    max-width: 1050px;
+  }
+  .pdt-showcase-ctn__desktop {
+    display: block;
+  }
+  .slideshow-container__mobile {
+    display: none;
+  }
+  .pdt-showcase-ctn .main-product-img {
+    border-radius: 10px;
+  }
+}
+
+/* ********* Product Information section ******** */
+
+.pdt-content-ctn {
+  padding: 1.75rem;
+  font-family: inherit;
+  /* width: 90%;
+    margin: 2rem auto; */
+}
+
+.company-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--Orange);
+  letter-spacing: 1px;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.pdt-title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: var(--Very-dark-blue);
+}
+
+.pdt-desc {
+  line-height: 1.6;
+  color: var(--Dark-grayish-blue);
+}
+
+.pricing-ctn {
+  margin: 1.75rem 0 1.25rem;
+}
+
+.pricing-ctn,
+.pricing-ctn div:first-child,
+.pricing-ctn span.discount,
+.pdt-quantity-ctn,
+.pdt-quantity-ctn span.minus-icon,
+.pdt-quantity-ctn span.plus-icon,
+.cart-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pricing-ctn span.final-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--Very-dark-blue);
+}
+
+.pricing-ctn span.discount {
+  margin-left: 1rem;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  font-weight: bold;
+  color: var(--Orange);
+  padding: 0rem 0.25rem;
+  background: var(--Pale-orange);
+}
+
+.pricing-ctn span.actual-price {
+  color: var(--Grayish-blue);
+  font-weight: normal;
+  text-decoration: line-through;
+}
+
+.cart-section {
+  flex-direction: column;
+}
+
+@media screen and (min-width: 975px) {
+  .cart-section {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1.5fr;
+    align-items: center;
+  }
+  .company-name {
+    margin-bottom: 1.25rem;
+  }
+  .pdt-content-ctn .pdt-title {
+    font-size: 2.75rem;
+    margin-bottom: 2rem;
+  }
+  .cart-section .pdt-quantity-ctn {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+}
+
+.pdt-quantity-ctn {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  background: var(--Light-grayish-blue);
+}
+
+.pdt-quantity-ctn span.minus-icon,
+.pdt-quantity-ctn span.plus-icon {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.pdt-quantity-ctn span.minus-icon:hover,
+.pdt-quantity-ctn span.plus-icon:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.pdt-quantity-ctn span.pdt-quantity {
+  font-weight: bold;
+}
+
+.addToCart-btn-ctn {
+  width: 100%;
+}
+
+#addToCart-btn {
+  width: 100%;
+  border: none;
+  padding: 1rem 0;
+  color: var(--White);
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 10px;
+  opacity: 1;
+  background: var(--Orange);
+  transition: opacity 300ms;
+  box-shadow: 0px 20px 30px var(--Pale-orange);
+}
+
+#addToCart-btn:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+#addToCart-btn,
+.cart-icon {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ************** Product showcase modal ************** */
+
+main {
+  position: relative;
+}
+
+.pdt-showcase-modal__desktop {
+  max-width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1000;
+  padding: 2rem 2.1rem 0;
+  display: flex;
+  flex-direction: column;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.show-pdt-slideshow-modal {
+  display: flex;
+}
+
+.pdt-showcase-model__close-btn-ctn {
+  width: 2em;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  align-self: flex-end;
+}
+
+.pdt-showcase-model__close-btn-ctn svg {
+  transform: scale(1.2);
+}
+
+.main-pdt-slideshow__modal {
+  border-radius: 15px;
+  background-color: var(--White);
+}
+
+.pdt-img__modal {
+  border-radius: 15px;
+}
+
+.pdt-images-ctn__modal {
+  width: 80%;
+  margin: 1.5rem auto;
+}
+
+.pdt-images-ctn__modal .pdt-image-ctn {
+  background-color: var(--White);
+}
+
+.active-pdt-img-ctn__modal {
+}
+
+.active-pdt-img__modal {
+  outline: 3px solid var(--Orange);
+}
+
+/* **************** Footer *************** */
+
+footer {
+  margin: 3rem 0;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
